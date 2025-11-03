@@ -47,6 +47,17 @@
                         </group>
                     </group>
                     <notebook>
+                        <page string="Zoning Analysis Sheet">
+                            <field name="zoning_result_ids" nolabel="1">
+                                <list string="Zoning Analysis Sheet" create="false">
+                                    <field name="rule_code"/>
+                                    <field name="description"/>
+                                    <field name="max_allowed"/>
+                                    <field name="proposed"/>
+                                    <field name="sheet_reference"/>
+                                </list>
+                            </field>
+                        </page>
                         <page string="Triggered Rules">
                             <group>
                                 <field name="zoning_rule_ids" widget="many2many_tags"/>
@@ -58,8 +69,8 @@
                             </group>
                         </page>
                         <page string="Generated Tasks">
-                            <field name="task_ids">
-                                <list>
+                            <field name="task_ids" readonly="1">
+                                <list create="false" edit="false" delete="false">
                                     <field name="name"/>
                                     <field name="sheet_code"/>
                                     <field name="sop_id"/>
@@ -67,7 +78,7 @@
                             </field>
                         </page>
                         <page string="Evaluation Logs">
-                            <field name="evaluation_log_ids">
+                            <field name="evaluation_log_ids" readonly="1">
                                 <list create="false" edit="false" delete="false">
                                     <field name="evaluated_on"/>
                                     <field name="rule_id"/>

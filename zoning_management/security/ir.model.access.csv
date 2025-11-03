@@ -4,3 +4,5 @@ access_project_zoning_evaluation_log_manager,project_zoning_evaluation_log_manag
 access_project_zoning_snippet_manager,project_zoning_snippet_manager,model_project_zoning_snippet,,1,1,1,1
 access_project_zoning_manager,project_zoning_manager,model_project_zoning,,1,1,1,1
 access_zoning_sheet_map_manager,zoning_sheet_map_manager,model_zoning_sheet_map,,1,1,1,1
+access_project_task_checklist_manager,project_task_checklist_manager,model_project_task_checklist,,1,1,1,1
+access_zoning_result_manager,zoning_result_manager,model_zoning_result,,1,1,1,1

@@ -8,6 +8,7 @@
     'category': 'Project Lifecycle',
     'depends': ['project_management_core'],
     "data": [
+        "views/project_task_view.xml",
         "data/zoning_sheet_map.xml",
         "data/ir_sequence.xml",
         "data/zoning_data.xml",
