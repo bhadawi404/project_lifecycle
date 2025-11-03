@@ -1,0 +1,7 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_project_type_manager,project_type_manager,model_project_type,,1,1,1,1
+access_project_phase_manager,project_phase_manager,model_project_phase,,1,1,1,1
+access_project_sop_manager,project_sop_manager,model_project_sop,,1,1,1,1
+access_project_sop_checklist_manager,project_sop_checklist_manager,model_project_sop_checklist,,1,1,1,1
+access_project_template_manager,project_template_manager,model_project_template,,1,1,1,1
+access_project_template_line_manager,project_template_line_manager,model_project_template_line,,1,1,1,1

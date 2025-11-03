@@ -1,0 +1,36 @@
+<odoo>
+    <record id="sheet_map_height" model="zoning.sheet.map">
+        <field name="name">Height Limit Sheet</field>
+        <field name="category">height</field>
+        <field name="sheet_code">Z01</field>
+        <field name="description">Height analysis sheet</field>
+    </record>
+
+    <record id="sheet_map_setback" model="zoning.sheet.map">
+        <field name="name">Setback Sheet</field>
+        <field name="category">setback</field>
+        <field name="sheet_code">Z02</field>
+        <field name="description">Front/Rear setback sheet</field>
+    </record>
+
+    <record id="sheet_map_area" model="zoning.sheet.map">
+        <field name="name">FAR / Coverage Sheet</field>
+        <field name="category">area</field>
+        <field name="sheet_code">Z03</field>
+        <field name="description">Floor Area Ratio sheet</field>
+    </record>
+
+    <record id="sheet_map_parking" model="zoning.sheet.map">
+        <field name="name">Parking Layout Sheet</field>
+        <field name="category">parking</field>
+        <field name="sheet_code">Z10</field>
+        <field name="description">Parking requirements sheet</field>
+    </record>
+
+    <record id="sheet_map_environment" model="zoning.sheet.map">
+        <field name="name">Environmental Compliance Sheet</field>
+        <field name="category">environment</field>
+        <field name="sheet_code">Z11</field>
+        <field name="description">Tree preservation and environmental checks</field>
+    </record>
+</odoo>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List VIEW -->
+    <record id="view_project_zoning_snippet_list" model="ir.ui.view">
+        <field name="name">project.zoning.snippet.list</field>
+        <field name="model">project.zoning.snippet</field>
+        <field name="arch" type="xml">
+            <list string="Zoning Regulation Snippets" default_order="project_type_id, name asc">
+                <field name="reference_code"/>
+                <field name="name"/>
+                <field name="sheet_map_id"/>
+                <field name="project_type_id"/>
+                <field name="city"/>
+                <field name="state"/>
+                <field name="is_mandatory"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- FORM VIEW -->
+    <record id="view_project_zoning_snippet_form" model="ir.ui.view">
+        <field name="name">project.zoning.snippet.form</field>
+        <field name="model">project.zoning.snippet</field>
+        <field name="arch" type="xml">
+            <form string="Zoning Regulation Snippet">
+                <header>
+                    <field name="active" widget="boolean_toggle" class="oe_inline"/>
+                </header>
+
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" required="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="reference_code" required="1"/>
+                            <field name="sheet_map_id" widget="selection" required="1"/>
+                            <field name="project_type_id"/>
+                            <field name="city"/>
+                            <field name="state"/>
+                            <field name="is_mandatory"/>
+                        </group>
+                        <group>
+                            <field name="description" placeholder="Describe the zoning article, regulation, or clause..."/>
+                            <field name="action_recommendation"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="attachment" string="Attachment / Legal File">
+                            <field name="attachment_ids" widget="many2many_binary"/>
+                        </page>
+                        <page string="Notes">
+                            <group>
+                                <field name="note"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- SEARCH VIEW -->
+    <record id="view_project_zoning_snippet_search" model="ir.ui.view">
+        <field name="name">project.zoning.snippet.search</field>
+        <field name="model">project.zoning.snippet</field>
+        <field name="arch" type="xml">
+            <search string="Search Zoning Snippets">
+                <field name="name"/>
+                <field name="reference_code"/>
+                <field name="project_type_id"/>
+                <separator/>
+                <filter string="Active" name="active_true" domain="[('active','=',True)]"/>
+                <filter string="Inactive" name="active_false" domain="[('active','=',False)]"/>
+                <group expand="1" string="Group By">
+                    <filter string="Applicable Building Type" name="project_type_id" context="{'group_by': 'project_type_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ACTION WINDOW -->
+    <record id="project_zoning_snippet_action" model="ir.actions.act_window">
+        <field name="name">Zoning Snippets</field>
+        <field name="res_model">project.zoning.snippet</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

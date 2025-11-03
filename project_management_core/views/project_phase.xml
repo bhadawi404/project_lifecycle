@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View project.phase View List -->
+    <record id="view_project_phase_list" model="ir.ui.view">
+        <field name="name">view.project.phase.list</field>
+        <field name="model">project.phase</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="code"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- View project.phase form -->
+    <record id="view_project_phase_form" model="ir.ui.view">
+        <field name="name">view.project.phase.form</field>
+        <field name="model">project.phase</field>
+        <field name="arch" type="xml">
+            <form string="Project Phase">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code" />
+                            <field name="is_zoning_phase" />
+                        </group>
+                        <group>
+                            <field name="description" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- View project.phase search -->
+    <record id="view_project_phase_search" model="ir.ui.view">
+        <field name="name">view.project.phase.search</field>
+        <field name="model">project.phase</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="code"/>
+                <field name="name"/>
+                <group expand="1" string="Group By">
+                    <filter string="Name" name="name" domain="[]" context="{'group_by':'name'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action project.phase -->
+    <record id="action_project_phase" model="ir.actions.act_window">
+        <field name="name">Project Phase</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">project.phase</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                There is no examples click here to add new Project Phase.
+            </p>
+        </field>
+    </record>
+
+</odoo>

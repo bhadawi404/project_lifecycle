@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="project_type_menu" name="Project Type" action="action_project_type" parent="project.menu_project_config" sequence="1"/>
+    <menuitem id="project_phase_menu" name="Project Phase" action="action_project_phase" parent="project.menu_project_config" sequence="2"/>
+    <menuitem id="project_template_menu" name="Project Template" action="project_template_action" parent="project.menu_project_config" sequence="3"/>
+    <menuitem id="project_sop_action_root_menu" name="SOP Management" parent="project.menu_main_pm" sequence="3"/>
+    <menuitem id="project_sop_action_menu" name="SOP Template" action="project_sop_action" parent="project_sop_action_root_menu" sequence="1"/>
+
+</odoo>

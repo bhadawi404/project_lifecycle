@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+    
+        <record id="project_type_commercial" model="project.type">
+            <field name="name">Commercial</field>
+            <field name="code">C0001</field>
+        </record>
+        <record id="project_type_residential" model="project.type">
+            <field name="name">Residential</field>
+            <field name="code">R0001</field>
+        </record>
+        <record id="project_type_mixed_use" model="project.type">
+            <field name="name">Mixed-used</field>
+            <field name="code">M001</field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

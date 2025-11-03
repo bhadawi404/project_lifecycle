@@ -1,0 +1,6 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_project_zoning_rule_manager,project_zoning_rule_manager,model_project_zoning_rule,,1,1,1,1
+access_project_zoning_evaluation_log_manager,project_zoning_evaluation_log_manager,model_project_zoning_evaluation_log,,1,1,1,1
+access_project_zoning_snippet_manager,project_zoning_snippet_manager,model_project_zoning_snippet,,1,1,1,1
+access_project_zoning_manager,project_zoning_manager,model_project_zoning,,1,1,1,1
+access_zoning_sheet_map_manager,zoning_sheet_map_manager,model_zoning_sheet_map,,1,1,1,1

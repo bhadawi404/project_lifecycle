@@ -1,0 +1,25 @@
+{
+    'name': 'Zoning Analysis',
+    'version': '1.0',
+    'summary': 'Zoning Analysis For Project Management',
+    'description': """
+    """,
+    'author': 'Ahmad Badawi',
+    'category': 'Project Lifecycle',
+    'depends': ['project_management_core'],
+    "data": [
+        "data/zoning_sheet_map.xml",
+        "data/ir_sequence.xml",
+        "data/zoning_data.xml",
+        "security/ir.model.access.csv",
+        "views/zoning_base.xml",
+        "views/zoning_rule.xml",
+        "views/zoning_sheet_map_views.xml",
+        "views/zoning_snippet.xml",
+         "views/menu_items.xml",
+    ],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+    'license': 'LGPL-3',
+}
