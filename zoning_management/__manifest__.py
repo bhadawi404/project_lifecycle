@@ -1,26 +1,24 @@
+# -*- coding: utf-8 -*-
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
-    'name': 'Zoning Analysis',
-    'version': '1.0',
-    'summary': 'Zoning Analysis For Project Management',
-    'description': """
-    """,
-    'author': 'Ahmad Badawi',
-    'category': 'Project Lifecycle',
-    'depends': ['project_management_core'],
-    "data": [
-        "views/project_task_view.xml",
-        "data/zoning_sheet_map.xml",
-        "data/ir_sequence.xml",
-        "data/zoning_data.xml",
-        "security/ir.model.access.csv",
-        "views/zoning_base.xml",
-        "views/zoning_rule.xml",
-        "views/zoning_sheet_map_views.xml",
-        "views/zoning_snippet.xml",
-         "views/menu_items.xml",
+    'name': 'Project Zoning Management',
+    'version': '18.0',
+    'category': 'Project Lifecycle Management',
+    'author': "",
+    'summary': 'Project Base Custom',
+    'website': '',
+    'depends': [
+        'project',
+    ],
+    'data': [
+        "reports/zoning_analysis_report.xml",
+        "views/project_project.xml",
+        "views/project_task.xml",
+        "views/project_zoning_analysis.xml",
+        "views/menu_items.xml",
+        "security/ir.model.access.csv"
     ],
     'installable': True,
     'application': True,
-    'auto_install': False,
     'license': 'LGPL-3',
 }

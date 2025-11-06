@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_expense_request_report" model="ir.actions.report">
+        <field name="name">Zoning Analysis</field>
+        <field name="model">project.zoning.analysis</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">zoning_management.report_zoning_analysis_document</field>
+        <field name="report_file">zoning_management.report_zoning_analysis_document</field>
+        <field name="binding_model_id" ref="zoning_management.model_project_zoning_analysis"/>
+        <field name="binding_type">report</field>
+    </record>
+    <template id="report_zoning_analysis_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+
+
+                    <div class="page">
+                        <style>
+            h2, h4 {
+                font-family: 'Helvetica', sans-serif;
+                font-weight: 600;
+            }
+            table.table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            th, td {
+                border: 1px solid #ccc !important;
+                padding: 5px;
+            }
+            .text-center {
+                text-align: center;
+            }
+            .text-muted {
+                color: #888;
+            }
+                        </style>
+                        <!-- HEADER -->
+                        <div class="text-center mb-4">
+                            <h2 style="color:#003366; font-weight:700;">ZONING ANALYSIS REPORT</h2>
+                            <p style="color:gray; font-size:12px;">
+                        Generated on <t t-raw="(datetime.datetime.now().strftime('%d %B %Y, %H:%M'))"/>
+                            </p>
+                            <hr style="border-top: 2px solid #003366; width:90%; margin:auto;"/>
+                        </div>
+
+                        <!-- PROJECT & ANALYSIS DETAILS -->
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <h4 style="color:#003366;">Project Information</h4>
+                                <p>
+                                    <strong>Project:</strong>
+                                    <t t-esc="doc.project_id.name or '-'"/>
+                                </p>
+                            </div>
+
+                            <div class="col-6">
+                                <h4 style="color:#003366;">Analysis Details</h4>
+                                <p>
+                                    <strong>Analysis Name:</strong>
+                                    <t t-esc="doc.name or '-'"/>
+                                </p>
+                                <p>
+                                    <strong>Date:</strong>
+                                    <t t-raw="(doc.create_date.strftime('%d %B %Y, %H:%M'))"/>
+                                </p>
+                                <p>
+                                    <strong>Total Zoning Lines:</strong>
+                                    <t t-esc="len(doc.line_ids)"/>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- ZONING LINE TABLE -->
+                        <h4 style="color:#003366; margin-bottom:5px;">Zoning Lines Overview</h4>
+                        <table class="table table-sm table-bordered" style="font-size:12px; border:1px solid #ccc;">
+                            <thead style="background-color:#003366; color:white !important;">
+                                <tr>
+                                    <th style="color:white !important; width:20%;">Zoning Code</th>
+                                    <th style="color:white !important; width:35%;">Description</th>
+                                    <th style="color:white !important; width:20%;">Max / Min</th>
+                                    <th style="color:white !important; width:20%;">Proposed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="doc.line_ids">
+                                    <t t-foreach="doc.line_ids" t-as="line">
+                                        <tr>
+                                            <td>
+                                                <t t-esc="line.zoning_code or '-'"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="line.description or '-'"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="line.max_allowed or '-'"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="line.proposed or '-'"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                                <t t-if="not doc.line_ids">
+                                    <tr>
+                                        <td colspan="5" class="text-center text-muted">No zoning lines available</td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <!-- LINKED TASKS SECTION -->
+                        <t t-set="related_tasks" t-value="doc.project_id.task_ids.filtered(lambda t: t.analysis_id.id == doc.id)"/>
+                        <t t-if="related_tasks">
+                            <div class="mt-5">
+                                <h4 style="color:#003366;">Related Project Tasks</h4>
+                                <table class="table table-bordered table-sm" style="font-size:12px;">
+                                    <thead style="background-color:#004080; color:white;">
+                                        <tr>
+                                            <th style="width:30%;">Zone Analysis</th>
+                                            <th style="width:25%;">Zoning Line</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="related_tasks" t-as="task" t-index="i">
+                                            <tr>
+                                                <td>
+                                                    <t t-esc="task.name or '-'"/>
+                                                </td>
+                                                <td>
+                                                    <ul style="margin:0; padding-left:15px;">
+                                                        <t t-foreach="task.zoning_line_ids" t-as="zl">
+                                                            <li>
+                                                                <t t-esc="zl.zoning_code or '-'"/>
+                                                                <t t-esc="zl.description or '-'"/>
+                                                            </li>
+                                                        </t>
+                                                        <t t-if="not task.zoning_line_ids">
+                                                            <li>-</li>
+                                                        </t>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </t>
+
+                        <t t-if="not related_tasks">
+                            <p class="mt-4 text-muted text-center" style="font-size:12px;">
+                        No related project tasks found for this analysis.
+                            </p>
+                        </t>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+
+    </template>
+
+</odoo>

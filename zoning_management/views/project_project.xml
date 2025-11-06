@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="project_project_inherit_zoning_analysis" model="ir.ui.view">
+        <field name="name">project.project.inherit.zoning.analysis</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='description']" position="before">
+                <page name="zoning_analyses" string="Zoning Analyses">
+                    <field name="zoning_analysis_ids">
+                        <list>
+                            <field name="name"/>
+                        </list>
+                        <form string="Zoning Analysis">
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <notebook>
+                                <page name="zoning_lines" string="Zoning Lines">
+                                    <field name="line_ids">
+                                        <list editable="bottom">
+                                            <field name="zoning_code"/>
+                                            <field name="description"/>
+                                            <field name="max_allowed"/>
+                                            <field name="proposed"/>
+                                        </list>
+                                    </field>
+                                </page>
+                            </notebook>
+                        </form>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

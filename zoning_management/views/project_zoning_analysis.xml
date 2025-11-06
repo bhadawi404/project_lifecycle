@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="project_zoning_analysis_view_list" model="ir.ui.view">
+        <field name="name">project_zoning_analysis.view.tree</field>
+        <field name="model">project.zoning.analysis</field>
+        <field name="arch" type="xml">
+            <list string="Zoning Analysis">
+                <field name="name" />
+                <field name="project_id" />
+            </list>
+        </field>
+    </record>
+    <record id="project_zoning_analysis_view_form" model="ir.ui.view">
+        <field name="name">project_zoning_analysis.view.form</field>
+        <field name="model">project.zoning.analysis</field>
+        <field name="arch" type="xml">
+            <form string="Zoning Analysis">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="project_id" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Zoning Analysis Line">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="zoning_code" required="1"/>
+                                    <field name="description" required="1"/>
+                                    <field name="max_allowed"/>
+                                    <field name="proposed"/>
+                                    <button string="Create Task" name="action_create_task" type="object" class="oe_highlight"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="project_zoning_analysis_view_search" model="ir.ui.view">
+        <field name="name">zoning_analysis.view.search</field>
+        <field name="model">project.zoning.analysis</field>
+        <field name="arch" type="xml">
+            <search string="Zoning Analysis">
+                <field name="name" />
+                <field name="project_id" />
+            </search>
+        </field>
+    </record>
+    <record id="project_zoning_analysis_action" model="ir.actions.act_window">
+        <field name="name">Zoning Analysis</field>
+        <field name="res_model">project.zoning.analysis</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+</odoo>

@@ -2,10 +2,7 @@
 <odoo>
 
 
-    <menuitem id="project_zoning_analysis_action_root_menu" name="Zoning Management" parent="project.menu_main_pm" sequence="4"/>
-    <menuitem id="project_zoning_analysis_action_menu" name="Zoning Analysis" action="project_zoning_action" parent="project_zoning_analysis_action_root_menu" sequence="1"/>
-    <menuitem id="project_zoning_rule_action_menu" name="Zoning Rule" action="project_zoning_rule_action" parent="project_zoning_analysis_action_root_menu" sequence="2"/>
-    <menuitem id="project_zoning_snippet_action_menu" name="Zoning Snippets" action="project_zoning_snippet_action" parent="project_zoning_analysis_action_root_menu" sequence="3"/>
-    <menuitem id="project_zoning_sheet_map_action_menu" name="Zoning Sheet Map" action="action_zoning_sheet_map" parent="project_zoning_analysis_action_root_menu" sequence="4"/>
+    <menuitem id="project_zoning_analysis_management_root_menu" name="Zoning Management" parent="project.menu_main_pm" sequence="4"/>
+    <menuitem id="project_zoning_analysis_action_menu" name="Zoning Analysis" action="project_zoning_analysis_action" parent="project_zoning_analysis_management_root_menu" sequence="1"/>
 
 </odoo>
