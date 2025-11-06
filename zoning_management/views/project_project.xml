@@ -32,6 +32,9 @@
                     </field>
                 </page>
             </xpath>
+            <xpath expr="//field[@name='label_tasks']" position="after">
+                <field name="current_phase"/>
+            </xpath>
         </field>
     </record>
 

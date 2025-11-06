@@ -7,11 +7,38 @@
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="phase" required="1"/>
                 <field name="analysis_id" readonly="context.get('from_zoning_analysis')"/>
                 <field name="available_zoning_line_ids" force_save="1" widget="many2many_tags" invisible="1"/>
                 <field name="zoning_line_ids" widget="many2many_tags" domain="[('id', 'in', available_zoning_line_ids)]" options="{'no_create': True}" readonly="context.get('from_zoning_analysis')"/>
             </xpath>
         </field>
     </record>
+    <record id="view_task_search_inherit_phase" model="ir.ui.view">
+        <field name="name">project.task.search.phase</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='project']" position="after">
+                <filter name="phase" string="Phase" context="{'group_by':'phase'}"/>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="phase" string="Phase"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_task_tree_inherit_phase" model="ir.ui.view">
+        <field name="name">project.task.tree.phase</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_tree2"/>
+        <!-- sesuaikan ref kalau berbeda -->
+        <field name="arch" type="xml">
+            <!-- letakkan phase setelah name atau user -->
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="phase"/>
+            </xpath>
+        </field>
+    </record>
+
 
 </odoo>

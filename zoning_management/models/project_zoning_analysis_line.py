@@ -18,6 +18,12 @@ class ZoningAnalysisLine(models.Model):
         string='Tasks'
     )
     display_name = fields.Char('display_name', compute='_compute_display_name')
+    phase_hint = fields.Selection([
+        ('sd', 'SD - Schematic Design'),
+        ('dd', 'DD - Design Development'),
+        ('cd', 'CD - Construction Documents'),
+        ('qc', 'QC - Quality Control'),
+    ], string="Phase Hint (Optional)")
 
 
     @api.depends('zoning_code', 'description')
@@ -33,7 +39,8 @@ class ZoningAnalysisLine(models.Model):
                 line.display_name = desc
 
     def action_create_task(self):
-        self.ensure_one()  # pastikan hanya satu zoning line
+        self.ensure_one()  
+        phase_default = self.phase_hint or self.analysis_id.project_id.current_phase
         action = self.env.ref("project.action_view_task").read()[0]
         action.update({
             "view_mode": "form",
@@ -41,6 +48,7 @@ class ZoningAnalysisLine(models.Model):
             "target": "current",
             "context": {
                 "default_name": f"{self.zoning_code or ''} - {self.description or ''}",
+                "default_phase": phase_default,
                 "default_analysis_id": self.analysis_id.id,
                 "default_project_id": self.analysis_id.project_id.id,
                 "default_zoning_line_ids": [(6, 0, [self.id])],

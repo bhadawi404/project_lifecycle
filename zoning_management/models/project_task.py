@@ -24,12 +24,22 @@ class ProjectTask(models.Model):
         store=False,
         string='Available Zoning Lines'
     )
+    phase = fields.Selection([
+        ('sd', 'SD - Schematic Design'),
+        ('dd', 'DD - Design Development'),
+        ('cd', 'CD - Construction Documents'),
+        ('qc', 'QC - Quality Control'),
+    ], string="Phase")
 
     @api.onchange('project_id')
     def _onchange_project_id_clear_analysis(self):
         if not self.project_id:
             self.analysis_id = False
             self.zoning_line_ids = [(5, 0, 0)]
+
+        if not self.env.context.get('from_zoning_analysis'):
+            if self.project_id:
+                self.phase = self.project_id.current_phase or False
 
     @api.onchange('analysis_id')
     def _onchange_analysis_id_clear_lines(self):
