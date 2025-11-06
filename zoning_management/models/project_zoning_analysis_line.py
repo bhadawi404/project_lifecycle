@@ -1,4 +1,5 @@
 from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 class ZoningAnalysisLine(models.Model):
     _name = 'project.zoning.analysis.line'
@@ -46,4 +47,26 @@ class ZoningAnalysisLine(models.Model):
                 "from_zoning_analysis": True,
             },
         })
+        return action
+
+    def action_view_task(self):
+        self.ensure_one()
+        action = self.env.ref("project.action_view_task").read()[0]
+
+        # Jika hanya ada 1 task → buka langsung form-nya
+        if len(self.task_ids) == 1:
+            form_view = self.env.ref("project.view_task_form2")
+            action.update({
+                "view_mode": "form",
+                "views": [(form_view.id, "form")],
+                "res_id": self.task_ids.id,
+            })
+        else:
+            # Jika ada lebih dari 1 → tampilkan daftar task terkait
+            action.update({
+                "domain": [("id", "in", self.task_ids.ids)],
+                "view_mode": "tree,form",
+                "context": {"default_zoning_line_ids": [(6, 0, [self.id])]},
+            })
+
         return action

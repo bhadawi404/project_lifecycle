@@ -37,6 +37,7 @@
                                     <field name="max_allowed"/>
                                     <field name="proposed"/>
                                     <button string="Create Task" name="action_create_task" type="object" class="oe_highlight"/>
+                                    <button string="View Task" name="action_view_task" type="object" invisible="not task_ids"/>
                                 </list>
                             </field>
                         </page>
