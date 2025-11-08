@@ -19,6 +19,13 @@
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_search_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//filter[@name='my_tasks']" position="after">
+                <separator/>
+                <filter name="phase_sd" string="SD" domain="[('phase','=', 'sd')]"/>
+                <filter name="phase_dd" string="DD" domain="[('phase','=', 'dd')]"/>
+                <filter name="phase_cd" string="CD" domain="[('phase','=', 'cd')]"/>
+                <filter name="phase_qc" string="QC" domain="[('phase','=', 'qc')]"/>
+            </xpath>
             <xpath expr="//filter[@name='project']" position="after">
                 <filter name="phase" string="Phase" context="{'group_by':'phase'}"/>
             </xpath>

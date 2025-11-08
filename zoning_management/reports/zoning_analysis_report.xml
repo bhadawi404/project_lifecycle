@@ -118,16 +118,18 @@
 
                                 <!-- Group tasks by phase -->
                                 <t t-set="phases" t-value="sorted(set(related_tasks.mapped('phase')), key=lambda x: (x or ''))"/>
+                                <t t-set="phase_dict" t-value="dict(related_tasks._fields['phase'].selection)"/>
+
                                 <t t-foreach="phases" t-as="phase_name">
                                     <div style="margin-top:15px;">
                                         <h5 style="color:#004080; border-bottom:1px solid #ccc; padding-bottom:3px;">
-                                            <t t-esc="phase_name or 'No Phase Assigned'"/>
+                                            <t t-esc="phase_dict.get(phase_name, 'No Phase Assigned')"/>
                                         </h5>
                                         <table class="table table-bordered table-sm" style="font-size:12px;">
                                             <thead style="background-color:#004080; color:white;">
                                                 <tr>
-                                                    <th style="width:30%;">Zone Analysis</th>
-                                                    <th style="width:25%;">Zoning Line</th>
+                                                    <th style="color:white !important; width:30%;">Zone Analysis</th>
+                                                    <th style="color:white !important; width:25%;">Zoning Line</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -141,6 +143,7 @@
                                                                 <t t-foreach="task.zoning_line_ids" t-as="zl">
                                                                     <li>
                                                                         <t t-esc="zl.zoning_code or '-'"/>
+ -
                                                                         <t t-esc="zl.description or '-'"/>
                                                                     </li>
                                                                 </t>
