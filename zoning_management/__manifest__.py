@@ -11,6 +11,7 @@
         'project',
     ],
     'data': [
+        "views/project_zoning_analysis_line.xml",
         "reports/zoning_analysis_report.xml",
         "views/project_project.xml",
         "views/project_task.xml",

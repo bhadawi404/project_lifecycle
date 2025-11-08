@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="project_zoning_analysis_line_view_list" model="ir.ui.view">
+        <field name="name">project_zoning_analysis_line.view.list</field>
+        <field name="model">project.zoning.analysis.line</field>
+        <field name="arch" type="xml">
+            <list string="Zoning Analysis Line">
+                <field name="analysis_id" />
+                <field name="zoning_code" />
+                <field name="description" />
+                <field name="max_allowed" />
+                <field name="phase_hint" />
+            </list>
+        </field>
+    </record>
+    <record id="project_zoning_analysis_line_view_form" model="ir.ui.view">
+        <field name="name">project_zoning_analysis_line.view.form</field>
+        <field name="model">project.zoning.analysis.line</field>
+        <field name="arch" type="xml">
+            <form string="Zoning Analysis Line">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="zoning_code"/>
+                        <h1>
+                            <field name="zoning_code"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="analysis_id" />
+                            <field name="phase_hint" />
+                            <field name="description" />
+                        </group>
+                        <group>
+                            <field name="max_allowed" />
+                            <field name="proposed" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

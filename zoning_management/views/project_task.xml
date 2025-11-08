@@ -12,6 +12,11 @@
                 <field name="available_zoning_line_ids" force_save="1" widget="many2many_tags" invisible="1"/>
                 <field name="zoning_line_ids" widget="many2many_tags" domain="[('id', 'in', available_zoning_line_ids)]" options="{'no_create': True}" readonly="context.get('from_zoning_analysis')"/>
             </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_zoning_lines" type="object" class="oe_stat_button" icon="fa-map-signs" invisible="not zoning_line_ids">
+                    <field string="Zoning Lines" name="zoning_line_ids" widget="statinfo"/>
+                </button>
+            </xpath>
         </field>
     </record>
     <record id="view_task_search_inherit_phase" model="ir.ui.view">
