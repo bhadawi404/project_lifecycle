@@ -11,6 +11,8 @@
         'project','project_base','hr'
     ],
     'data': [
+        "views/project_task_checklist_views.xml",
+        "views/project_my_checklist_views.xml",
         "views/project_checklist_rule_views.xml",
         "views/project_checklist_line_views.xml",
         "views/project_checklist_views.xml",

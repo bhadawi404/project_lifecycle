@@ -8,14 +8,14 @@ class ProjectChecklist(models.Model):
     _order = 'id desc'
 
     name = fields.Char(string='Checklist Name', required=True, tracking=True)
+    project_id = fields.Many2one('project.project', string='Project', ondelete='cascade', index=True, tracking=True)
     # scope_type defines what this checklist is primarily for
     scope_type = fields.Selection([
-        ('project', 'Project'),
         ('project_phase', 'Project Phase'),
         ('project_page', 'Project Page'),
         ('task', 'Task'),
         ('employee', 'Employee'),
-    ], string='Scope Type', default='project', required=True)
+    ], string='Scope Type', default='project_phase', required=True)
     # dynamic reference to the actual record (project/task/employee/...); optional
     scope_ref = fields.Reference([
         ('project.project', 'Project'),

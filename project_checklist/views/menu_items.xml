@@ -2,5 +2,7 @@
 <odoo>
 
     <menuitem id="checklist_root_menu" name="Checklists" parent="project.menu_main_pm" sequence="3"/>
-    <menuitem id="checklist_menu" name="Checklist" action="project_checklist_action" parent="checklist_root_menu" sequence="1"/>
+    <menuitem id="menu_project_checklist_employee" name="My Checklist" parent="checklist_root_menu" action="action_project_checklist_employee" sequence="1"/>
+    <menuitem id="menu_project_checklist_task" name="Tasks Checklist" parent="checklist_root_menu" action="action_project_checklist_task" sequence="2"/>
+    <menuitem id="checklist_menu" name="Checklist" action="project_checklist_action" parent="checklist_root_menu" sequence="3"/>
 </odoo>
