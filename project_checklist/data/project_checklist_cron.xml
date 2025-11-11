@@ -1,0 +1,11 @@
+<odoo>
+    <record id="ir_cron_checklist_rule_evaluation" model="ir.cron">
+        <field name="name">Checklist Rule Evaluator</field>
+        <field name="model_id" ref="model_project_checklist_rule"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_check_rule_consistency()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+</odoo>
