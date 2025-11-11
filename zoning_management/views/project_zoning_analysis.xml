@@ -36,7 +36,7 @@
                                     <field name="description" required="1"/>
                                     <field name="max_allowed"/>
                                     <field name="proposed"/>
-                                    <field name="phase_hint"/>
+                                    <field name="phase_hint_id"/>
                                     <button string="Create Task" name="action_create_task" type="object" class="oe_highlight"/>
                                     <button string="View Task" name="action_view_task" type="object" invisible="not task_ids"/>
                                 </list>

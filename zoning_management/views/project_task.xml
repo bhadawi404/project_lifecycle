@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="before">
-                <field name="phase" required="1"/>
+                <field name="phase_id" required="1" widget="selection"/>
                 <field name="analysis_id" readonly="context.get('from_zoning_analysis')"/>
                 <field name="available_zoning_line_ids" force_save="1" widget="many2many_tags" invisible="1"/>
                 <field name="zoning_line_ids" widget="many2many_tags" domain="[('id', 'in', available_zoning_line_ids)]" options="{'no_create': True}" readonly="context.get('from_zoning_analysis')"/>
@@ -26,16 +26,16 @@
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='my_tasks']" position="after">
                 <separator/>
-                <filter name="phase_sd" string="SD" domain="[('phase','=', 'sd')]"/>
-                <filter name="phase_dd" string="DD" domain="[('phase','=', 'dd')]"/>
-                <filter name="phase_cd" string="CD" domain="[('phase','=', 'cd')]"/>
-                <filter name="phase_qc" string="QC" domain="[('phase','=', 'qc')]"/>
+                <filter name="phase_sd" string="SD" domain="[('phase_id.code', '=', 'SD')]"/>
+                <filter name="phase_dd" string="DD" domain="[('phase_id.code', '=', 'DD')]"/>
+                <filter name="phase_cd" string="CD" domain="[('phase_id.code', '=', 'CD')]"/>
+                <filter name="phase_qc" string="QC" domain="[('phase_id.code', '=', 'QC')]"/>
             </xpath>
             <xpath expr="//filter[@name='project']" position="after">
-                <filter name="phase" string="Phase" context="{'group_by':'phase'}"/>
+                <filter name="phase" string="Phase" context="{'group_by':'phase_id'}"/>
             </xpath>
             <xpath expr="//field[@name='name']" position="after">
-                <field name="phase" string="Phase"/>
+                <field name="phase_id" string="Phase"/>
             </xpath>
         </field>
     </record>
@@ -47,7 +47,7 @@
         <field name="arch" type="xml">
             <!-- letakkan phase setelah name atau user -->
             <xpath expr="//field[@name='name']" position="after">
-                <field name="phase"/>
+                <field name="phase_id"/>
             </xpath>
         </field>
     </record>

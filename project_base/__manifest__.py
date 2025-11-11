@@ -1,22 +1,17 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
-    'name': 'Project Zoning Management',
+    'name': 'Project Base Core',
     'version': '18.0',
     'category': 'Project Lifecycle Management',
     'author': "",
-    'summary': 'Project Base Custom',
+    'summary': 'Project Base Core',
     'website': '',
     'depends': [
-        'project','project_base'
+        'project',
     ],
     'data': [
-        "views/project_zoning_analysis_line.xml",
-        "reports/zoning_analysis_report.xml",
-        "views/project_project.xml",
-        "views/project_task.xml",
-        "views/project_zoning_analysis.xml",
-        "views/menu_items.xml",
+        "data/project_phase_data.xml",
         "security/ir.model.access.csv"
     ],
     'installable': True,

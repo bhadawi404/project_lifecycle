@@ -24,12 +24,7 @@ class ProjectTask(models.Model):
         store=False,
         string='Available Zoning Lines'
     )
-    phase = fields.Selection([
-        ('sd', 'SD - Schematic Design'),
-        ('dd', 'DD - Design Development'),
-        ('cd', 'CD - Construction Documents'),
-        ('qc', 'QC - Quality Control'),
-    ], string="Phase")
+    phase_id = fields.Many2one('project.phase', string='Phase')
 
     @api.onchange('project_id')
     def _onchange_project_id_clear_analysis(self):
@@ -39,7 +34,7 @@ class ProjectTask(models.Model):
 
         if not self.env.context.get('from_zoning_analysis'):
             if self.project_id:
-                self.phase = self.project_id.current_phase or False
+                self.phase_id = self.project_id.current_phase_id or False
 
     @api.onchange('analysis_id')
     def _onchange_analysis_id_clear_lines(self):
