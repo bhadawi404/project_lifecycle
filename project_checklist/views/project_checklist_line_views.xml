@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_project_checklist_line_form" model="ir.ui.view">
+        <field name="name">project.checklist.line.form</field>
+        <field name="model">project.checklist.line</field>
+        <field name="arch" type="xml">
+            <form string="Checklist Line">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="checklist_id" invisible="1"/>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="description"/>
+                            <field name="status"/>
+                            <field name="is_confirmed"/>
+                        </group>
+                        <group>
+                            <field name="assoc_task_ids" widget="many2many_tags"/>
+                            <field name="assoc_employee_ids" widget="many2many_tags"/>
+                            <field name="assoc_phase_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="completed_by" readonly="1"/>
+                        <field name="completed_on" readonly="1"/>
+                        <field name="sequence" invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
