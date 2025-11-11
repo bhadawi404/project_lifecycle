@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_project_checklist_rule_form" model="ir.ui.view">
+        <field name="name">project.checklist.rule.form</field>
+        <field name="model">project.checklist.rule</field>
+        <field name="arch" type="xml">
+            <form string="Checklist Rule">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="trigger"/>
+                            <field name="condition_expression"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="action" string="Actions">
+                            <field name="action_ids">
+                                <list editable="bottom">
+                                    <field name="action_type"/>
+                                    <field name="params_json"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

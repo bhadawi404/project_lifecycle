@@ -9,6 +9,7 @@
                 <sheet>
                     <group>
                         <group>
+                            <field name="sequence" invisible="1"/>
                             <field name="checklist_id" invisible="1"/>
                             <field name="name"/>
                             <field name="code"/>
@@ -20,13 +21,21 @@
                             <field name="assoc_task_ids" widget="many2many_tags"/>
                             <field name="assoc_employee_ids" widget="many2many_tags"/>
                             <field name="assoc_phase_ids" widget="many2many_tags"/>
+                            <field name="completed_by" readonly="1"/>
+                            <field name="completed_on" readonly="1"/>
                         </group>
                     </group>
-                    <group>
-                        <field name="completed_by" readonly="1"/>
-                        <field name="completed_on" readonly="1"/>
-                        <field name="sequence" invisible="1"/>
-                    </group>
+                    <notebook>
+                        <page name="rule" string="Rules">
+                            <field name="rule_ids">
+                                <list>
+                                    <field name="trigger"/>
+                                    <field name="condition_expression"/>
+                                    <field name="active"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
