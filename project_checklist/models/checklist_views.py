@@ -19,11 +19,15 @@ class ProjectChecklistViewEmployee(models.Model):
         ('blocked', 'Blocked'),
         ('done', 'Done'),
         ('na', 'N/A'),
-    ], string='Status', readonly=False)
+    ], string='Status', readonly=False, group_expand='_group_expand_states')
 
     completed_by = fields.Many2one('res.users', string='Completed By', readonly=False)
     completed_on = fields.Datetime(string='Completed On', readonly=False)
 
+    @api.model
+    def _group_expand_states(self, states, domain):
+        return [key for key, val in type(self).status.selection]
+        
     def init(self):
         """Build SQL View"""
         tools.drop_view_if_exists(self.env.cr, self._table)
@@ -71,11 +75,15 @@ class ProjectChecklistViewTask(models.Model):
         ('blocked', 'Blocked'),
         ('done', 'Done'),
         ('na', 'N/A'),
-    ], string='Status', readonly=False)
+    ], string='Status', readonly=False, group_expand='_group_expand_states')
 
     completed_by = fields.Many2one('res.users', string='Completed By', readonly=False)
     completed_on = fields.Datetime(string='Completed On', readonly=False)
 
+    @api.model
+    def _group_expand_states(self, states, domain):
+        return [key for key, val in type(self).status.selection]
+    
     def write(self, vals):
         for rec in self:
             if 'status' in vals:
