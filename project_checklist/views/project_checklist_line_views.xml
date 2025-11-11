@@ -18,6 +18,8 @@
                             <field name="is_confirmed"/>
                         </group>
                         <group>
+                            <field name="linked_checklist_id" />
+                            <field name="linked_cll_ids" widget="many2many_tags"/>
                             <field name="tag_ids" widget="many2many_tags"/>
                             <field name="assoc_page_ids" widget="many2many_tags"/>
                             <field name="assoc_task_ids" widget="many2many_tags"/>
