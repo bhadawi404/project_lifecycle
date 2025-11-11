@@ -1,6 +1,6 @@
 import re
 import logging
-from odoo import models, fields
+from odoo import api, models, fields
 
 _logger = logging.getLogger(__name__)
 
@@ -78,3 +78,13 @@ class ProjectChecklistRule(models.Model):
                 action.execute_action(self.line_id)
             except Exception as e:
                 _logger.exception("Error running action %s for rule %s: %s", action.id, self.id, e)
+
+    @api.model
+    def cron_check_rule_consistency(self):
+        rules = self.search([('active', '=', True), ('trigger', '=', 'on_deadline_reached')])
+        for rule in rules:
+            try:
+                if rule._evaluate_condition():
+                    rule._run_actions()
+            except Exception as e:
+                _logger.error("CRON rule check failed for rule %s: %s", rule.id, e)
