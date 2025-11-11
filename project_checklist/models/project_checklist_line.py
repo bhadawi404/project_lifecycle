@@ -27,7 +27,7 @@ class ProjectChecklistLine(models.Model):
     assoc_employee_ids = fields.Many2many('hr.employee','project_checklist_line_employee_rel', 'line_id', 'employee_id', string='Associated Employees')
     assoc_task_ids = fields.Many2many('project.task', 'checklist_line_task_rel', 'cll_id', 'task_id', string='Associated Tasks')
     tag_ids = fields.Many2many('project.tags', string='Tags')
-    # assoc_page_ids = fields.Many2many('project.page', string='Associated Pages')  # project.page could be custom
+    assoc_page_ids = fields.Many2many('project.page',  'checklist_line_project_page_rel', 'cll_id', 'project_page_id', string='Associated Pages') 
     # Reuse linking
     linked_checklist_id = fields.Many2one('project.checklist', string='Linked Checklist')
     linked_cll_ids = fields.Many2many('project.checklist.line', 'checklist_line_link_rel', 'cll_id', 'linked_id', string='Linked Lines')

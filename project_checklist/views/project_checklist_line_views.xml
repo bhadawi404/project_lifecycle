@@ -19,6 +19,7 @@
                         </group>
                         <group>
                             <field name="tag_ids" widget="many2many_tags"/>
+                            <field name="assoc_page_ids" widget="many2many_tags"/>
                             <field name="assoc_task_ids" widget="many2many_tags"/>
                             <field name="assoc_employee_ids" widget="many2many_tags"/>
                             <field name="assoc_phase_ids" widget="many2many_tags"/>

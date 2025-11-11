@@ -19,6 +19,7 @@ class ProjectChecklist(models.Model):
     # dynamic reference to the actual record (project/task/employee/...); optional
     scope_ref = fields.Reference([
         ('project.project', 'Project'),
+        ('project.page', 'Page'),
         ('project.task', 'Task'),
         ('hr.employee', 'Employee'),
     ], string='Scope Reference', help='Reference to the target record for this checklist')
