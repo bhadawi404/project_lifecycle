@@ -34,7 +34,7 @@ class ProjectChecklistViewEmployee(models.Model):
         self.env.cr.execute(f"""
             CREATE OR REPLACE VIEW {self._table} AS (
                 SELECT
-                    row_number() OVER() AS id,
+                    cl.id AS id,
                     cl.id AS line_id,
                     cl.checklist_id,
                     cl.project_id,
@@ -54,8 +54,8 @@ class ProjectChecklistViewEmployee(models.Model):
     def write(self, vals):
         for rec in self:
             if 'status' in vals:
-                rec.line_id.status = vals['status']
-        return super().write(vals)
+                rec.line_id.sudo().write({'status': vals['status']})
+        return True
 
 class ProjectChecklistViewTask(models.Model):
     _name = 'project.checklist.view.task'
@@ -87,15 +87,15 @@ class ProjectChecklistViewTask(models.Model):
     def write(self, vals):
         for rec in self:
             if 'status' in vals:
-                rec.line_id.status = vals['status']
-        return super().write(vals)
+                rec.line_id.sudo().write({'status': vals['status']})
+        return True
 
     def init(self):
         tools.drop_view_if_exists(self.env.cr, self._table)
         self.env.cr.execute(f"""
             CREATE OR REPLACE VIEW {self._table} AS (
                 SELECT
-                    row_number() OVER() AS id,
+                    cl.id AS id,
                     cl.id AS line_id,
                     cl.checklist_id,
                     cl.project_id,
