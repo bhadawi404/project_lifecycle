@@ -16,7 +16,14 @@
                     <!-- Link Existing Task Mode -->
                     <group invisible="action_type != 'link'">
                         <separator string="Link Existing Task(s)"/>
-                        <field name="existing_task_ids" help="Select one or more tasks from this project to link." widget="many2many_tags" options="{'no_create': True}" domain="[('project_id', '=', project_id)]"/>
+
+                        <field name="existing_task_ids" nolabel="1" widget="one2many_list" domain="[('project_id', '=', project_id)]" readonly="context.get('from_zoning_analysis')">
+                            <list editable="top" create="0" delete="0">
+                                <field name="name"/>
+                                <field name="phase_id"/>
+                                <field name="project_id"/>
+                            </list>
+                        </field>
                     </group>
 
                     <!-- Info untuk Create Mode -->
