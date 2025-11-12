@@ -11,6 +11,7 @@
         'project','project_base'
     ],
     'data': [
+        "wizards/wizard_zoning_task_view.xml",
         "views/project_zoning_analysis_line.xml",
         "reports/zoning_analysis_report.xml",
         "views/project_project.xml",

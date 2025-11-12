@@ -1,3 +1,4 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
 access_project_zoning_analysis_line_manager,project_zoning_analysis_line_manager,model_project_zoning_analysis_line,,1,1,1,1
 access_project_zoning_analysis_manager,project_zoning_analysis_manager,model_project_zoning_analysis,,1,1,1,1
+access_zoning_task_wizard_manager,zoning_task_wizard_manager,model_zoning_task_wizard,,1,1,1,1

@@ -25,7 +25,8 @@ class ProjectTask(models.Model):
         string='Available Zoning Lines'
     )
     phase_id = fields.Many2one('project.phase', string='Phase')
-
+    show_zoning_tab = fields.Boolean(default=False)
+    
     @api.onchange('project_id')
     def _onchange_project_id_clear_analysis(self):
         if not self.project_id:
@@ -49,26 +50,14 @@ class ProjectTask(models.Model):
             else:
                 task.available_zoning_line_ids = False
 
-    def action_view_zoning_lines(self):
-        self.ensure_one()
-        action = {
-            'type': 'ir.actions.act_window',
-            'name': _('Zoning Lines'),
-            'res_model': 'project.zoning.analysis.line',
-            'view_mode': 'list,form',
-            'domain': [('id', 'in', self.zoning_line_ids.ids)],
-            'context': {'default_task_id': self.id},
-        }
+    @api.onchange('show_zoning_tab')
+    def _onchange_show_zoning_tab(self):
+        """Clear zoning fields when toggle is turned off"""
+        if not self.show_zoning_tab:
+            self.analysis_id = False
+            self.available_zoning_line_ids = [(5, 0, 0)]  # clear all many2many
+            self.zoning_line_ids = [(5, 0, 0)]  # clear one2many
 
-        if len(self.zoning_line_ids) == 1:
-            form_view = self.env.ref('zoning_management.project_zoning_analysis_line_form_view', False)
-            if form_view:
-                action.update({
-                    'view_mode': 'form',
-                    'views': [(form_view.id, 'form')],
-                    'res_id': self.zoning_line_ids.id,
-                })
-        return action
     
 
     

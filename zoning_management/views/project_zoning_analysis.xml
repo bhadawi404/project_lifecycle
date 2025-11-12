@@ -17,15 +17,10 @@
         <field name="arch" type="xml">
             <form string="Zoning Analysis">
                 <sheet>
-                    <div class="oe_title">
-                        <label for="name"/>
-                        <h1>
-                            <field name="name"/>
-                        </h1>
-                    </div>
                     <group>
                         <group>
                             <field name="project_id" />
+                            <field name="name"/>
                         </group>
                     </group>
                     <notebook>
@@ -37,8 +32,8 @@
                                     <field name="max_allowed"/>
                                     <field name="proposed"/>
                                     <field name="phase_hint_id" widget="selection"/>
-                                    <button string="Create Task" name="action_create_task" type="object" class="oe_highlight"/>
-                                    <button string="View Task" name="action_view_task" type="object" invisible="not task_ids"/>
+                                    <field name="task_ids" widget="many2many_tags" string="Task(s)" readonly="1"/>
+                                    <button name="open_create_link_wizard" type="object" string="Create / Link Task" class="oe_highlight"/>
                                 </list>
                             </field>
                         </page>

@@ -1,0 +1,10 @@
+<odoo>
+    <!-- Employees can only update checklist lines they’re assigned to -->
+    <record id="rule_employee_checklist_access" model="ir.rule">
+        <field name="name">Employee: Own Checklist Lines</field>
+        <field name="model_id" ref="model_project_checklist_line"/>
+        <field name="domain_force">[('assoc_employee_ids.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+</odoo>

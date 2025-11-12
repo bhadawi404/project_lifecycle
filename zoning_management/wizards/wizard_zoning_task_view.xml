@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_zoning_task_view_form" model="ir.ui.view">
+        <field name="name">wizard.zoning.task.form</field>
+        <field name="model">zoning.task.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create / Link Task" class="o_form_full_width">
+                <sheet>
+                    <group>
+                        <field name="action_type" widget="radio" options="{'horizontal': true}"/>
+                        <field name="project_id" readonly="1"/>
+                        <field name="analysis_id" readonly="1"/>
+                        <field name="zoning_line_id" readonly="1"/>
+                    </group>
+
+                    <!-- Link Existing Task Mode -->
+                    <group invisible="action_type != 'link'">
+                        <separator string="Link Existing Task(s)"/>
+                        <field name="existing_task_ids" help="Select one or more tasks from this project to link." widget="many2many_tags" options="{'no_create': True}" domain="[('project_id', '=', project_id)]"/>
+                    </group>
+
+                    <!-- Info untuk Create Mode -->
+                    <group invisible="action_type != 'create'">
+                        <separator string="Create New Task"/>
+                        <div class="alert alert-warning" colspan="2" role="alert">
+                            <strong>Create New Task</strong>
+                            <br/>
+                            When you confirm, a new task form will open so you can fill all details (phase, deadline, etc.).
+                        </div>
+                    </group>
+
+                    <footer>
+                        <button string="Confirm" type="object" name="action_confirm" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

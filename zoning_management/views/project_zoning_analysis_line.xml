@@ -10,7 +10,6 @@
                 <field name="zoning_code" />
                 <field name="description" />
                 <field name="max_allowed" />
-                <field name="phase_hint_id" />
             </list>
         </field>
     </record>

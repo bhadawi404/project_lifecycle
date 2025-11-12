@@ -8,14 +8,31 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="before">
                 <field name="phase_id" required="1" widget="selection"/>
-                <field name="analysis_id" readonly="context.get('from_zoning_analysis')"/>
+                <field name="show_zoning_tab" string="Add Zoning" widget="boolean_toggle" readonly="context.get('from_zoning_analysis')"/>
+                <!-- <field name="analysis_id" readonly="context.get('from_zoning_analysis')"/>
                 <field name="available_zoning_line_ids" force_save="1" widget="many2many_tags" invisible="1"/>
-                <field name="zoning_line_ids" widget="many2many_tags" domain="[('id', 'in', available_zoning_line_ids)]" options="{'no_create': True}" readonly="context.get('from_zoning_analysis')"/>
+                <field name="zoning_line_ids" widget="many2many_tags" domain="[('id', 'in', available_zoning_line_ids)]" options="{'no_create': True}" readonly="context.get('from_zoning_analysis')"/> -->
             </xpath>
-            <xpath expr="//div[@name='button_box']" position="inside">
-                <button name="action_view_zoning_lines" type="object" class="oe_stat_button" icon="fa-map-signs" invisible="not zoning_line_ids">
-                    <field string="Zoning Lines" name="zoning_line_ids" widget="statinfo"/>
-                </button>
+            <!-- <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_add_zoning" type="object" string="Add Zoning" class="oe_stat_button" icon="fa-map-signs"/>
+            </xpath> -->
+            <xpath expr="//notebook" position="inside">
+                <page name="zoning_tab" string="Zoning" invisible="not show_zoning_tab">
+                    <group>
+                        <field name="analysis_id" string="Zoning Analysis" options="{'no_create': True}" domain="[('project_id', '=', project_id)]" readonly="context.get('from_zoning_analysis')"/>
+                        <field name="available_zoning_line_ids" force_save="1" widget="many2many_tags" invisible="1"/>
+                        <separator string="Zoning Lines Table"/>
+                        <field name="zoning_line_ids" nolabel="1" widget="one2many_list" domain="[('id', 'in', available_zoning_line_ids)]" readonly="context.get('from_zoning_analysis')">
+                            <list editable="top" create="0" delete="0">
+                                <field name="zoning_code"/>
+                                <field name="description"/>
+                                <field name="max_allowed"/>
+                                <field name="proposed"/>
+                            </list>
+                        </field>
+                    </group>
+
+                </page>
             </xpath>
         </field>
     </record>
