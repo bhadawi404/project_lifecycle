@@ -33,6 +33,7 @@
                                     <field name="proposed"/>
                                     <field name="phase_hint_id" widget="selection"/>
                                     <field name="task_ids" widget="many2many_tags" string="Task(s)" readonly="1"/>
+                                    <!-- <button name="action_view_task" type="object" string="View Task" class="btn btn-link p-0 o_icon_button" icon="fa-eye" invisible="not task_ids"/> -->
                                     <button name="open_create_link_wizard" type="object" string="Create / Link Task" class="oe_highlight"/>
                                 </list>
                             </field>

@@ -117,33 +117,37 @@
                                 <h4 style="color:#003366;">Related Project Tasks</h4>
 
                                 <!-- Group tasks by phase -->
-                                <t t-set="phases" t-value="sorted(set(related_tasks.mapped('phase')), key=lambda x: (x or ''))"/>
-                                <t t-set="phase_dict" t-value="dict(related_tasks._fields['phase'].selection)"/>
+                                <t t-set="phases" t-value="sorted(set(related_tasks.mapped('phase_id.code')), key=lambda x: (x or ''))"/>
 
-                                <t t-foreach="phases" t-as="phase_name">
+
+                                <t t-foreach="phases" t-as="phase_code">
                                     <div style="margin-top:15px;">
                                         <h5 style="color:#004080; border-bottom:1px solid #ccc; padding-bottom:3px;">
-                                            <t t-esc="phase_dict.get(phase_name, 'No Phase Assigned')"/>
+                                            <t t-esc="phase_code or 'No Phase Assigned'"/>
                                         </h5>
                                         <table class="table table-bordered table-sm" style="font-size:12px;">
                                             <thead style="background-color:#004080; color:white;">
                                                 <tr>
+                                                    <th style="color:white !important; width:30%;">Task(s)</th>
                                                     <th style="color:white !important; width:30%;">Zone Analysis</th>
                                                     <th style="color:white !important; width:25%;">Zoning Line</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <t t-foreach="related_tasks.filtered(lambda t: t.phase == phase_name)" t-as="task" t-index="i">
+                                                <t t-foreach="related_tasks.filtered(lambda t: (t.phase_id.code or '') == phase_code)" t-as="task" t-index="i">
                                                     <tr>
                                                         <td>
                                                             <t t-esc="task.name or '-'"/>
+                                                        </td>
+                                                        <td>
+                                                            <t t-esc="task.analysis_id.name or '-'"/>
                                                         </td>
                                                         <td>
                                                             <ul style="margin:0; padding-left:15px;">
                                                                 <t t-foreach="task.zoning_line_ids" t-as="zl">
                                                                     <li>
                                                                         <t t-esc="zl.zoning_code or '-'"/>
- -
+                                        -
                                                                         <t t-esc="zl.description or '-'"/>
                                                                     </li>
                                                                 </t>
