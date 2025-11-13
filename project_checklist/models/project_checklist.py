@@ -8,7 +8,7 @@ class ProjectChecklist(models.Model):
     _order = 'id desc'
 
     name = fields.Char(string='Checklist Name', required=True, tracking=True)
-    project_id = fields.Many2one('project.project', string='Project', ondelete='cascade', index=True, tracking=True)
+    project_id = fields.Many2one('project.project', string='Project', ondelete='cascade', index=True, tracking=True, required=True)
     # scope_type defines what this checklist is primarily for
     scope_type = fields.Selection([
         ('project_phase', 'Project Phase'),
