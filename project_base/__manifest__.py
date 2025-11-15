@@ -11,6 +11,9 @@
         'project',
     ],
     'data': [
+        'views/menu_items.xml',
+        'wizards/wizard_create_checklist_view.xml',
+        'views/project_task.xml',
         'views/project_project.xml',
         'wizards/wizard_bulk_create_task_views.xml',
         "data/project_phase_data.xml",
