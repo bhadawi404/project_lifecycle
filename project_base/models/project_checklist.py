@@ -13,10 +13,16 @@ class ProjectTaskChecklist(models.Model):
     status = fields.Selection([
         ('todo', 'To Do'),
         ('in_progress', 'In Progress'),
-        ('blocked', 'Blocked'),
         ('done', 'Done'),
+        ('blocked', 'Blocked'),
         ('n/a', 'N/A')
-    ], string='Status', default='todo', tracking=True)
+    ], string='Status', default='todo', tracking=True, group_expand='_group_expand_states')
+    completed_by = fields.Many2one('res.users', string='Completed By', readonly=False)
+    completed_on = fields.Datetime(string='Completed On', readonly=False)
+
+    @api.model
+    def _group_expand_states(self, states, domain):
+        return [key for key, val in type(self).status.selection]
     
 
     
