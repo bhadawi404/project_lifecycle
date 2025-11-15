@@ -30,6 +30,7 @@ class ZoningTaskWizard(models.TransientModel):
                     'phase_id': phase_default.id,
                     'date_deadline': line.date_deadline,
                     'description': line.description,
+                    'show_zoning_tab': True,
                     'project_id': self.project_id.id,
                     'analysis_id': self.analysis_id.id,
                     'zoning_line_ids': [(6, 0, [self.zoning_line_id.id])],
