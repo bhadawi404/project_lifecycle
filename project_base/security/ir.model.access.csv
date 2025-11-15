@@ -1,2 +1,4 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
 access_project_phase_manager,project_phase_manager,model_project_phase,,1,1,1,1
+access_bulk_create_task_manager,bulk_create_task_manager,model_bulk_create_task,,1,1,1,1
+access_bulk_create_task_line_manager,bulk_create_task_line_manager,model_bulk_create_task_line,,1,1,1,1

@@ -32,9 +32,6 @@
                     </field>
                 </page>
             </xpath>
-            <xpath expr="//field[@name='label_tasks']" position="after">
-                <field name="current_phase_id" widget="selection"/>
-            </xpath>
         </field>
     </record>
 

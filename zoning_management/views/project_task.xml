@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="before">
                 <field name="phase_id" required="1" widget="selection"/>
-                <field name="show_zoning_tab" string="Add Zoning" widget="boolean_toggle" readonly="context.get('from_zoning_analysis')"/>
+                <field name="show_zoning_tab" string="Need Zoning ?" widget="boolean_toggle" readonly="context.get('from_zoning_analysis')"/>
                 <!-- <field name="analysis_id" readonly="context.get('from_zoning_analysis')"/>
                 <field name="available_zoning_line_ids" force_save="1" widget="many2many_tags" invisible="1"/>
                 <field name="zoning_line_ids" widget="many2many_tags" domain="[('id', 'in', available_zoning_line_ids)]" options="{'no_create': True}" readonly="context.get('from_zoning_analysis')"/> -->

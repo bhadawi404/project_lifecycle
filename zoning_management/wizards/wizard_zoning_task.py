@@ -51,5 +51,6 @@ class ZoningTaskCreationWizard(models.TransientModel):
 
     wizard_id = fields.Many2one('zoning.task.wizard', string='Wizard')
     name = fields.Char('Task Name')
+    user_ids = fields.Many2many('res.users', string='Assignees')
     date_deadline = fields.Datetime(string=_('Deadline'), default=fields.Datetime.now)
     description = fields.Text('Description')

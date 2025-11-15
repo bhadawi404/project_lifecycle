@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="project_project_inherit_project_phase" model="ir.ui.view">
+        <field name="name">project.project.inherit.project.phase</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='label_tasks']" position="after">
+                <field name="current_phase_id" widget="selection"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

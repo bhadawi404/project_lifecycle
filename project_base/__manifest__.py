@@ -11,6 +11,8 @@
         'project',
     ],
     'data': [
+        'views/project_project.xml',
+        'wizards/wizard_bulk_create_task_views.xml',
         "data/project_phase_data.xml",
         "security/ir.model.access.csv"
     ],
