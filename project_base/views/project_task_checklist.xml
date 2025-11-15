@@ -68,16 +68,16 @@
                     <div class="oe_title">
                         <span class="o_form_label">Title</span>
                         <h1>
-                            <field name="name"/>
+                            <field name="name" readonly="from_my_checklist"/>
                         </h1>
                     </div>
                     <group>
                         <group>
-                            <field name="project_id" />
-                            <field name="task_id" />
+                            <field name="project_id" readonly="from_my_checklist"/>
+                            <field name="task_id" readonly="from_my_checklist"/>
                         </group>
                         <group>
-                            <field name="user_ids" options="{'no_open': True, 'no_quick_create': True}" widget="many2many_avatar_user"/>
+                            <field name="user_ids" options="{'no_open': True, 'no_quick_create': True}" widget="many2many_avatar_user" readonly="from_my_checklist"/>
                             <field name="description" />
                         </group>
                     </group>
@@ -95,6 +95,7 @@
         <field name="name"> My Task Checklist</field>
         <field name="res_model">project.task.checklist</field>
         <field name="domain">[('user_ids', 'in', [uid])]</field>
+        <field name="context">{'from_my_checklist': True}</field>
         <field name="view_mode">kanban,list,form</field>
     </record>
 
