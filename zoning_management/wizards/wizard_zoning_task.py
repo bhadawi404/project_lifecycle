@@ -41,7 +41,13 @@ class ZoningTaskWizard(models.TransientModel):
         elif self.action_type == 'link':
             if not self.existing_task_ids:
                 raise ValidationError(_("Please select at least one existing task to link."))
-            self.zoning_line_id.task_ids = [(4, t.id) for t in self.existing_task_ids]
+            for task in self.existing_task_ids:
+                task.write({
+                    'show_zoning_tab': True,
+                    'analysis_id': self.analysis_id.id,
+                    'zoning_line_ids': [(4, self.zoning_line_id.id)],
+                })
+
             return {'type': 'ir.actions.act_window_close'}
 
 
