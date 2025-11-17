@@ -5,7 +5,7 @@ class ProjectTaskChecklist(models.Model):
     _name = 'project.task.checklist'
     _description =  'Project Checklist'
 
-    task_id = fields.Many2one('project.task', string='Task')
+    task_id = fields.Many2one('project.task', string='Task', ondelete='cascade')
     project_id = fields.Many2one('project.project', string='Project')
     name = fields.Char('Title',required=True, tracking=True)
     user_ids = fields.Many2many('res.users', string='Assignees')
