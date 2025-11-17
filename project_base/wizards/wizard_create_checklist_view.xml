@@ -5,16 +5,17 @@
         <field name="name">bulk_create_task_checklist.view.form</field>
         <field name="model">bulk.create.task.checklist</field>
         <field name="arch" type="xml">
-            <form string="Create Task Checklist(s)">
+            <form string="Create Checklist(s)">
                 <sheet>
                     <group>
                         <field name="project_id" required="1" options="{'no_create_edit': True,'no_create': True, 'no_open': True}"/>
+                        <field name="is_related_task" />
+                        <field name="task_id" required="is_related_task" invisible="not is_related_task" options="{'no_open': True, 'no_quick_create': True}" domain="[('project_id','=',parent.project_id)]"/>
                     </group>
                     <group>
                         <separator string="Checklist Item"/>
                         <field name="checklist_ids" nolabel="1">
                             <list editable="bottom">
-                                <field name="task_id" options="{'no_open': True, 'no_quick_create': True}" required="1" domain="[('project_id','=',parent.project_id)]"/>
                                 <field name="name" required="1"/>
                                 <field name="user_ids" options="{'no_open': True, 'no_quick_create': True}" widget="many2many_avatar_user"/>
                                 <field name="description" />
@@ -30,10 +31,10 @@
         </field>
     </record>
     <record id="bulk_create_task_checklist_action" model="ir.actions.act_window">
-        <field name="name">Create Task Checklist(s)</field>
+        <field name="name">Create Checklist(s)</field>
         <field name="res_model">bulk.create.task.checklist</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
-    <menuitem id="bulk_create_task_checklist_menu" name="Create Task Checklist(s)" action="bulk_create_task_checklist_action" parent="project_base.checklist_root_menu" sequence="1"/>
+    <menuitem id="bulk_create_task_checklist_menu" name="Create Checklist(s)" action="bulk_create_task_checklist_action" parent="project_base.checklist_root_menu" sequence="1"/>
 </odoo>
