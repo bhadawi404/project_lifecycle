@@ -10,7 +10,7 @@
                     <group>
                         <field name="project_id" required="1" options="{'no_create_edit': True,'no_create': True, 'no_open': True}"/>
                         <field name="is_related_task" />
-                        <field name="task_id" required="is_related_task" invisible="not is_related_task" options="{'no_open': True, 'no_quick_create': True}" domain="[('project_id','=',parent.project_id)]"/>
+                        <field name="task_id" required="is_related_task" invisible="not is_related_task" options="{'no_open': True, 'no_quick_create': True}" domain="[('project_id','=',project_id)]"/>
                     </group>
                     <group>
                         <separator string="Checklist Item"/>
