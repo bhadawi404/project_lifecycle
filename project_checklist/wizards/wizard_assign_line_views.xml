@@ -1,0 +1,28 @@
+<!-- project_checklists/views/wizards_views.xml -->
+<odoo>
+    <record id="view_add_line_to_checklist_wizard_form" model="ir.ui.view">
+        <field name="name">add.line.to.checklist.wizard.form</field>
+        <field name="model">add.line.to.checklist.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Add line(s) to checklist(s)">
+                <sheet>
+                    <group>
+                        <field name="line_ids" widget="many2many_tags"/>
+                        <field name="checklist_ids" widget="many2many_tags"/>
+                    </group>
+                    <footer>
+                        <button string="Apply" type="object" name="action_apply" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="add_line_to_checklist_wizard_action" model="ir.actions.act_window">
+        <field name="name">Add line(s) to checklist(s)</field>
+        <field name="res_model">add.line.to.checklist.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

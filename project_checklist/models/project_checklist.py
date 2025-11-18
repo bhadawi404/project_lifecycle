@@ -1,6 +1,5 @@
 from odoo import models, fields, api, _
 
-
 class ProjectChecklist(models.Model):
     _name = 'project.checklist'
     _description =  'Project Checklist'
@@ -9,34 +8,38 @@ class ProjectChecklist(models.Model):
 
     name = fields.Char(string='Checklist Name', required=True, tracking=True)
     project_id = fields.Many2one('project.project', string='Project', ondelete='cascade', index=True, tracking=True, required=True)
-    # scope_type defines what this checklist is primarily for
-    scope_type = fields.Selection([
-        ('project_phase', 'Project Phase'),
-        ('project_page', 'Project Page'),
-        ('task', 'Task'),
-        ('employee', 'Employee'),
-    ], string='Scope Type', default='project_phase', required=True)
-    # dynamic reference to the actual record (project/task/employee/...); optional
-    scope_ref = fields.Reference([
-        ('project.project', 'Project'),
-        ('project.page', 'Page'),
-        ('project.task', 'Task'),
-        ('hr.employee', 'Employee'),
-    ], string='Scope Reference', help='Reference to the target record for this checklist')
-    phase_id = fields.Many2one('project.phase', string='Phase (optional)')  # project.phase may be custom; optional
-    line_ids = fields.One2many('project.checklist.line', 'checklist_id', string='Lines', cascade=True)
-    active = fields.Boolean(default=True)
-    progress = fields.Float(string='Progress (%)', compute='_compute_progress', store=False)
+    user_id = fields.Many2one('res.users', string='Owner', help='Owner of this checklist (visibility)')
+    # shared lines
+    line_ids = fields.Many2many(
+        'project.checklist.line',
+        'checklist_line_rel',
+        'checklist_id',
+        'line_id',
+        string='Lines'
+    )
     note = fields.Text('Notes')
+    active = fields.Boolean(default=True)
 
-    @api.depends('line_ids.status')
-    def _compute_progress(self):
+    # Compute employees & tasks based on lines
+    employee_ids = fields.Many2many(
+        'hr.employee',
+        string='Assigned Employees',
+        compute='_compute_employee_ids'
+    )
+    task_ids = fields.Many2many(
+        'project.task',
+        string='Associated Tasks',
+        compute='_compute_task_ids'
+    )
+
+    @api.depends('line_ids.assoc_employee_ids')
+    def _compute_employee_ids(self):
         for rec in self:
-            lines = rec.line_ids.filtered(lambda l: l.status != 'n/a')
-            total = len(lines)
-            done = len(lines.filtered(lambda l: l.status == 'done'))
-            rec.progress = (done / total * 100.0) if total else 0.0
+            rec.employee_ids = rec.line_ids.mapped('assoc_employee_ids')
 
-
+    @api.depends('line_ids.assoc_task_ids')
+    def _compute_task_ids(self):
+        for rec in self:
+            rec.task_ids = rec.line_ids.mapped('assoc_task_ids')
     
     

@@ -1,5 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- project_checklists/views/project_checklist_line_views.xml -->
 <odoo>
+    <record id="view_project_checklist_line_list" model="ir.ui.view">
+        <field name="name">project.checklist.line.list</field>
+        <field name="model">project.checklist.line</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="project_id"/>
+                <field name="assoc_task_ids" widget="many2many_tags"/>
+                <field name="assoc_employee_ids" widget="many2many_avatar_user"/>
+                <field name="checklist_ids" widget="many2many_tags"/>
+            </list>
+        </field>
+    </record>
 
     <record id="view_project_checklist_line_form" model="ir.ui.view">
         <field name="name">project.checklist.line.form</field>
@@ -9,40 +22,32 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="sequence" invisible="1"/>
-                            <field name="checklist_id" invisible="1"/>
                             <field name="name"/>
                             <field name="code"/>
                             <field name="description"/>
-                            <field name="status"/>
-                            <field name="is_confirmed"/>
+                            <field name="note"/>
                         </group>
                         <group>
-                            <field name="linked_checklist_id" />
-                            <field name="linked_cll_ids" widget="many2many_tags"/>
-                            <field name="tag_ids" widget="many2many_tags"/>
-                            <field name="assoc_page_ids" widget="many2many_tags"/>
-                            <field name="assoc_task_ids" widget="many2many_tags"/>
-                            <field name="assoc_employee_ids" widget="many2many_tags"/>
-                            <field name="assoc_phase_ids" widget="many2many_tags"/>
-                            <field name="completed_by" readonly="1"/>
-                            <field name="completed_on" readonly="1"/>
+                            <field name="primary_checklist_id" invisible="1"/>
+                            <field name="checklist_ids" widget="many2many_tags"/>
                         </group>
                     </group>
+
                     <notebook>
-                        <page name="rule" string="Rules">
-                            <field name="rule_ids">
-                                <list>
-                                    <field name="trigger"/>
-                                    <field name="condition_expression"/>
-                                    <field name="active"/>
-                                </list>
-                            </field>
+                        <page string="Details">
+                            <group>
+                                <field name="description"/>
+                            </group>
+                        </page>
+                        <page string="Assignments">
+                            <group>
+                                <field name="assoc_employee_ids" widget="many2many_tags"/>
+                                <field name="assoc_task_ids" widget="many2many_tags"/>
+                            </group>
                         </page>
                     </notebook>
                 </sheet>
             </form>
         </field>
     </record>
-
 </odoo>

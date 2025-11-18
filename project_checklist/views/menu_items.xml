@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="project_page_menu" name="Project Page" parent="project.menu_main_pm" action="action_project_page" sequence="2"/>
-    <menuitem id="checklist_root_menu" name="Checklists" parent="project.menu_main_pm" sequence="3"/>
-    <menuitem id="menu_project_checklist_employee" name="My Checklist" parent="checklist_root_menu" action="action_project_checklist_employee" sequence="1"/>
-    <menuitem id="menu_project_checklist_task" name="Tasks Checklist" parent="checklist_root_menu" action="action_project_checklist_task" sequence="2"/>
-    <menuitem id="menu_project_checklist_page" name="Pages Checklist" parent="checklist_root_menu" action="action_project_checklist_page" sequence="3"/>
-    <menuitem id="checklist_menu" name="Checklist" action="project_checklist_action" parent="checklist_root_menu" sequence="4"/>
+    <menuitem id="menu_project_checklist_root" name="Checklists" sequence="3" parent="project.menu_main_pm"/>
+    <menuitem id="menu_project_checklist" name="All Checklists" parent="menu_project_checklist_root" action="action_project_checklist"/>
 </odoo>
