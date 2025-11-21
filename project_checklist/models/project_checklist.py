@@ -8,7 +8,7 @@ class ProjectChecklist(models.Model):
 
     name = fields.Char(string='Checklist Name', required=True, tracking=True)
     project_id = fields.Many2one('project.project', string='Project', ondelete='cascade', index=True, tracking=True, required=True)
-    user_id = fields.Many2one('res.users', string='Owner', help='Owner of this checklist (visibility)')
+    employee_id = fields.Many2one('hr.employee', string='Owner', help='Owner of this checklist (visibility)')
     # shared lines
     line_ids = fields.Many2many(
         'project.checklist.line',
