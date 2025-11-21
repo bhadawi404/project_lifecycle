@@ -11,7 +11,8 @@
         'project','project_base','hr'
     ],
     'data': [
-        'wizards/wizard_assign_line_views.xml',
+        "data/ir_rule.xml",
+        "wizards/wizard_assign_line_views.xml",
         "views/project_checklist_line_views.xml",
         "views/project_checklist_views.xml",
         "views/menu_items.xml",
