@@ -8,8 +8,8 @@ class ZoningAnalysisLine(models.Model):
     analysis_id = fields.Many2one('project.zoning.analysis', ondelete='cascade')
     zoning_code = fields.Char('Zoning Code / Section')
     description = fields.Text('Description')
-    max_allowed = fields.Char('Max Allowed / Min Required')
-    proposed = fields.Char('Proposed')
+    max_allowed = fields.Text('Max Allowed / Min Required')
+    proposed = fields.Text('Proposed')
     task_ids = fields.Many2many(
         'project.task',
         'task_zoning_line_rel',   
