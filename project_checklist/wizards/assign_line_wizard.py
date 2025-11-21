@@ -7,6 +7,8 @@ class AddLineToChecklistWizard(models.TransientModel):
 
     line_ids = fields.Many2many('project.checklist.line', string='Lines', required=True)
     checklist_ids = fields.Many2many('project.checklist', string='Target Checklists', required=True)
+    task_ids = fields.Many2many('project.task', string='Associated Tasks')
+    employee_ids = fields.Many2many('hr.employee', string='Assign Employees')
 
     def action_apply(self):
         for wiz in self:
